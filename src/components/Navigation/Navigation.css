@@ -1,0 +1,26 @@
+.navigation{
+    display: flex;
+    align-items: center;
+    gap:16px;
+    padding: 28px 180px;
+}
+.navigation > a{
+    text-decoration: none;
+    color:#B0B0B0;
+    font-family: var(--raleway);
+    font-weight: normal;
+    font-size: 18px;
+}
+
+@media (max-width: 480px){
+    .navigation{
+        padding: 15px 24px;
+    }
+    .navigation > a{
+        font-size: 12px;
+    }
+    .navigation > img{
+        width: 5px;
+        height: 10px;
+    }
+}

@@ -1,0 +1,43 @@
+.header{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 180px;
+    
+    box-shadow: 0 0 10px rgba(57, 113, 164, 0.25);
+}
+.header_contacts{
+    display: flex;
+    align-items: center;
+}
+
+.header_contacts_link{
+    font-family: var(--raleway);
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.header_contacts_tel{
+    margin-right: 64px;
+}
+.header_contacts_mail{
+    margin-right: 48px;
+}
+
+@media (max-width: 480px){
+    .header{
+        padding: 12px 24px;
+        height:auto
+    }
+    .header_logo{
+        width: 52px;
+        height: 22px;
+        
+    }
+    .header_contacts_link{
+        display: none;
+    }
+}

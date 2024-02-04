@@ -1,0 +1,32 @@
+.list_row{
+    background-color: var(--main-color);
+}
+.list_row:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+td{
+    padding: 28px 0;
+    font-family: var(--raleway);
+    color: var(--text-color);
+    font-size: 20px; 
+}
+.row_first{
+    padding-left: 12px;
+}
+.row_last{
+    padding-right: 12px;
+}
+
+@media (max-width: 480px){
+    td{
+        padding: 24px 0;
+        font-size: 12px;
+    }
+    .row_first{
+        padding-left: 24px;
+    }
+    .row_last{
+        padding-right: 12px;
+    }
+}

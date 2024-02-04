@@ -1,0 +1,33 @@
+.theme_switch{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 55px;
+    height: 26px;
+    border-radius: 13px;
+    padding-inline: 3px;
+    border: none;
+
+    background-color: var(--accent-color);
+}
+.theme_switch:hover{
+    cursor: pointer;
+}
+
+.switch_ball{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    background-image: url('../../assets/switch/light.png');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    transition: margin-left 200ms ease-in-out;
+}
+
+.switch_ball_toggled{
+    margin-left: 60%;
+    background-image: url('../../assets/switch/dark.png');
+
+}

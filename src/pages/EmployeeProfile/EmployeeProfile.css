@@ -1,0 +1,135 @@
+.user_card{
+    width: calc(100% - 360px);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 16px;
+    display: flex;
+    gap:42px;
+    border-bottom: 1px solid var(--hover-color);
+}
+.user_card_pfp{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.card_info_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card_info_container > h1{
+    font-family: var(--raleway);
+    font-size: 40px;
+    font-weight: bold;
+    color:var(--text-color)
+}
+
+.card_info_container > h2{
+    font-family: var(--raleway);
+    font-size: 24px;
+    font-weight: normal;
+    color:var(--text-color)
+}
+.card_stack_container{
+    display: flex;
+    list-style-type: none;
+    gap:16px;
+}
+.user_card_stack_tag{
+    font-family: var(--raleway);
+    font-size: 16px;
+    font-weight: normal;
+    padding: 10px 21px;
+    border-radius: 5px;
+    background-color: var(--hover-color);
+    color:var(--text-color)
+}
+
+.card_main_info{
+    padding-inline:180px;
+    padding-top: 40px;
+}
+
+.card_main_info > h3{
+    font-family: var(--raleway);
+    color:var(--text-color);
+    font-size: 32px;
+    font-weight: 500;
+    padding-bottom: 1em;
+}
+
+.card_main_info_container{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap:24px;
+}
+.info_row{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--raleway);
+    font-size: 24px;
+    font-weight: 300;
+    align-items: start;
+    color:var(--text-color)
+}
+.bolder{
+    font-weight: 400;
+}
+.card_stack_container_mobile{
+    display: none;
+}
+
+@media (max-width: 480px){
+    .user_card{
+        width: calc(100% - 50px);
+        gap:16px;
+        align-items: center;
+        border-bottom: none;
+        padding-bottom: 12px;
+    }
+    .user_card_pfp{
+        width: 100px;
+        height: 100px;
+    }
+    .card_info_container{
+        justify-content: flex-start;
+        gap:10px;
+    }
+    .card_info_container > h1{
+        font-size: 20px;
+    }
+    .card_info_container > h2{
+        font-size: 14px;
+    }
+
+    .card_stack_container_mobile{
+        display: flex;
+        gap:8px;
+        width: calc(100% - 50px);
+        margin: 0 auto;
+        list-style-type: none;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--hover-color);
+    }
+    .card_stack_container_mobile > li{
+        padding: 10px 17px;
+        font-size: 12px;
+    }
+    .card_stack_container{
+        display: none;
+    }
+    .card_main_info{
+        padding-inline: 25px;
+    }
+    .card_main_info > h3{
+        font-size: 16px;
+    }
+    .info_row{
+        font-size: 14px;
+    }
+    .bolder{
+        font-weight: bolder;
+    }
+}

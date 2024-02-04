@@ -1,0 +1,26 @@
+table{
+    padding-inline: 168px;
+    width: 100%;
+    border-spacing: 0;
+}
+th{
+    text-align: start;
+    font-family: var(--raleway);
+    color: #B0B0B0;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 28px 0;
+}
+
+@media (max-width: 480px){
+    table{
+        padding-inline: 0;
+    }
+    th{
+        font-size: 12px;
+        padding: 24px 0 4px 0;
+    }
+    tr{
+        padding-inline:24px ;
+    }
+}
