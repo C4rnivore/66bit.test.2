@@ -1,6 +1,13 @@
 import React, { useContext, Dispatch } from "react";
 
-const FiltersContext = React.createContext<{filters:Array<string>, setFilters:Dispatch<Array<string>>}>(null!)
+export interface Filters{
+    position: Array<string>;
+    gender: Array<string>;
+    stack: Array<string>;
+    query: string;
+}
+
+const FiltersContext = React.createContext<{filters:Filters, setFilters:Dispatch<Filters>}>(null!)
 export const FiltersProvider = FiltersContext.Provider
 
 function useFilters() {

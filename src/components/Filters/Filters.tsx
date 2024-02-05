@@ -1,10 +1,11 @@
-import useFilters from "../../utils/useFilters";
+import useFilters, { Filters } from "../../utils/useFilters";
 import Dropdown from "../Dropdown/Dropdown";
 import cross from '../../assets/cross.png'
 import './Filters.css'
 import { FC, SetStateAction, useState } from "react";
+import { deleteFromFilters } from "../../utils/filtersParser";
 
-const Filters:FC<{fetchCallback:Function, inputManager:Function}> = (props) => {
+const Filters:FC<{ inputManager:Function}> = (props) => {
     const PositionsOptions:Array<string> = ['Frontend-разработчик', 'Backend-разработчик', 'Аналитик', 'Менеджер', 'Дизайнер']
     const StackOptions:Array<string> = ['CSharp', 'React', 'Java', 'PHP', 'Figma', 'Word']
     const {filters, setFilters} = useFilters()
@@ -17,13 +18,14 @@ const Filters:FC<{fetchCallback:Function, inputManager:Function}> = (props) => {
         check.checked = false
         check_mobile.checked = false
 
-        let updated = filters.filter(val => val != name)        
+        let updated = deleteFromFilters(filters, name)        
         setFilters(updated)
     }
 
     const handleQueryChange = (e: { target: { value: SetStateAction<string>; }; }) =>{
-        props.inputManager(e.target.value)
-        setQuery(e.target.value);
+        let updated:Filters = {...filters}
+        updated.query = e.target.value.toString()
+        setFilters(updated)
     }
 
     return ( 
@@ -51,7 +53,7 @@ const Filters:FC<{fetchCallback:Function, inputManager:Function}> = (props) => {
             <div className="filters_bottom">
                 <div className="filters_list">
                     <span>Выбранные фильтры:</span>
-                    {filters.map((filter, index) => (
+                    {[...filters.position, ...filters.gender, ...filters.stack].map((filter, index) => (
                         <div className="filter_item" key={index}>
                             <button className="filter_item_close" onClick={() => deleteFilter(filter)}>
                                 <span>&#9587;</span>
@@ -60,7 +62,7 @@ const Filters:FC<{fetchCallback:Function, inputManager:Function}> = (props) => {
                         </div>
                     ))}
                 </div>
-                <button className="filters_btn" onClick={ ()=> props.fetchCallback(filters, query)}>Найти</button>
+                <button className="filters_btn">Найти</button>
             </div>
         </div> 
     );

@@ -1,4 +1,6 @@
 import axios from "axios"
+import { Filters } from "./useFilters"
+import { parseFilters } from "./filtersParser"
 
 const api = 'https://frontend-test-api.stk8s.66bit.ru/api/Employee?'
 
@@ -14,17 +16,12 @@ export interface EmployeeDTO{
     stack:Array<string>,
 }
 
-export async function fetchData(
-    page:number = 1, 
-    count:number = 10, 
-    name:string ='', 
-    gender:string = '',
-    position:string = '',
-    stack:Array<string> = []):Promise<Array<EmployeeDTO>>{
-    
+export async function fetchData(page:number, filters:Filters,  count:number = 10):Promise<Array<EmployeeDTO>>{
+    filters = parseFilters(filters)
+
     var response = await axios({
         method:'GET',
-        url: buildQuery(page,count, name, gender, position,stack),
+        url: buildQuery(page, count, filters.query, filters.gender[0], filters.position[0], filters.stack),
     })
     
     return response.data
@@ -50,13 +47,12 @@ function buildQuery( page:number,
         res = res + `Count=${count}&`
         if(name !== '')
             res = res + `Name=${name}&`
-        if(gender !== '')
+        if(gender !== undefined)
             res = res + `Gender=${gender}&`
-        if(position !== '')
+        if(position !== undefined)
             res = res + `Position=${position}&`
         stack.forEach(el=>{
             res = res + `Stack=${el}&`
         })
-
         return res.substring(0, res.length - 1);
 }
