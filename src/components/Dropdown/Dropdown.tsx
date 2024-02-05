@@ -12,6 +12,18 @@ const Dropdown:FC<{
     const dropdownBtn = useRef<HTMLButtonElement>(null)
     const {filters, setFilters} = useFilters()
 
+    useEffect(()=>{
+        window.addEventListener("click", function(event) {
+            let dropdowns = this.document.querySelectorAll('.dropdown_content')
+            let btns = this.document.querySelectorAll('.dropdown_btn')
+
+            if((event.target as HTMLElement)?.closest('.dropdown') === null){
+                dropdowns.forEach(div=>div.classList.remove('show'))
+                btns.forEach(btn=>btn.classList.remove('dropdown_btn_active'))
+            }
+        });
+    })
+
     const dropdownClickHandler = () =>{
         let id = props.mobile? 'dropdown_mobile_' + props.title : 'dropdown_' + props.title       
         
@@ -33,13 +45,15 @@ const Dropdown:FC<{
         }       
     }
 
+
     return ( 
         <div className="dropdown">
             <button ref={dropdownBtn} onClick={dropdownClickHandler} className="dropdown_btn">
                 <span>{props.title}</span>
                 <img src={arrow} alt="" />
             </button>
-            <div id={props.mobile? 'dropdown_mobile_' + props.title : 'dropdown_' + props.title } className="dropdown_content">
+            <div id={props.mobile? 'dropdown_mobile_' + props.title : 'dropdown_' + props.title }
+             className="dropdown_content">
                 {props.options.map((option, index)=>(
                     <div key={index} className="dropdown_option_container">
                         <span className="dropdown_option" key={index}>{option}</span>

@@ -21,7 +21,7 @@ function EmployeeList() {
         .then(response=>{
             if(prevFilters === filters && response.length !== 0)
                 setRes([...res, ...response])
-            else if(response.length === 0 && filters.query.length !== 0){
+            else if(response.length === 0 && filters.query.length !== 0 && pagesLoaded === 1){
                 setRes([ ...response])
             }
             else{
