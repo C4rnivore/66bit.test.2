@@ -1,39 +1,44 @@
 import { useEffect, useState } from "react";
+import { EmployeeDTO, fetchData } from "../../utils/employeeApi";
 import Filters from "../../components/Filters/Filters";
 import Navigation from "../../components/Navigation/Navigation";
 import ListRow from "../../components/ListRow/ListRow";
 import './EmployeeList.css'
-import { EmployeeDTO, fetchData } from "../../utils/employeeApi";
 import useFilters from "../../utils/useFilters";
-import { parseFilters } from "../../utils/filtersParser";
 
 function EmployeeList() {
     const [res, setRes] = useState<Array<EmployeeDTO>>([])
     const [pagesLoaded, setPagesLoaded] = useState<number>(1)   
     const [contentLoading,setContentLoading] = useState<boolean>(false)
-    // const [blockRequest, setBlockRequest] = useState<boolean>(false)
-    const [input, setInput] = useState<string>('')
     const [prevFilters, setPrevFilters] = useState<any>(null)
     const {filters,setFilters} = useFilters()
 
     useEffect(()=>{
+        if(prevFilters !== filters)
+            setPagesLoaded(cur=> cur = 1)
+        
         fetchData(pagesLoaded, filters)
         .then(response=>{
             if(prevFilters === filters && response.length !== 0)
                 setRes([...res, ...response])
+            else if(response.length === 0 && filters.query.length !== 0){
+                setRes([ ...response])
+            }
             else{
                 if(response.length !== 0){
                     setRes([ ...response])
-                    setPagesLoaded(1)
                     setPrevFilters(filters)
                 }
-            }
-        })    
+            } 
+        }) 
     },[pagesLoaded, filters])
 
     function inputStateChange(input:string){
-        if(input === '')
-        setInput(input)
+        if(input === ''){
+            let updated:Filters = {...filters}
+            updated.query = input
+            setFilters(updated)
+        }
     }
 
     useEffect(()=>{

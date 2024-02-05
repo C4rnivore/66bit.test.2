@@ -23,8 +23,13 @@ const Filters:FC<{ inputManager:Function}> = (props) => {
     }
 
     const handleQueryChange = (e: { target: { value: SetStateAction<string>; }; }) =>{
+        props.inputManager(e.target.value)
+        setQuery(e.target.value)
+    }
+
+    const updateFilterQuery = () =>{
         let updated:Filters = {...filters}
-        updated.query = e.target.value.toString()
+        updated.query = query
         setFilters(updated)
     }
 
@@ -62,7 +67,7 @@ const Filters:FC<{ inputManager:Function}> = (props) => {
                         </div>
                     ))}
                 </div>
-                <button className="filters_btn">Найти</button>
+                <button className="filters_btn" onClick={updateFilterQuery}>Найти</button>
             </div>
         </div> 
     );
